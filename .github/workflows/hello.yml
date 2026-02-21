@@ -1,0 +1,13 @@
+name: Ehsaas GitHub Action  # Visible name in GitHub UI
+
+on: [push]  # Triggers on any push to any branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Free cloud robot (runner) to execute on
+    steps:
+      - name: Checkout code  # Step 1: Grab your repo files
+        uses: actions/checkout@v4
+        
+      - name: 23f3002949@ds.study.iitm.ac.in  # REQUIRED: Your email in step name
+        run: echo "Hello from Ehsaas's action! This is the most recent run."  # Simple command
