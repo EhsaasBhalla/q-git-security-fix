@@ -1,0 +1,21 @@
+name: Cache Demo
+
+on: [push]  # Triggers on any push
+
+jobs:
+  cache-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: prime-cache-285bf39  # Exact name required
+      id: cache-step
+      uses: actions/cache@v4      # Latest version as required
+      with:
+        key: cache-285bf39        # Exact key required
+        path: ~/.cache/example    # Cache a dummy path (doesn't matter what)
+        
+    - name: Show cache result
+      run: echo "Cache result: ${{ steps.cache-step.outputs.cache-hit }}"
