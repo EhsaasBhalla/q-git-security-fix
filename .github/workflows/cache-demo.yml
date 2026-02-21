@@ -1,0 +1,24 @@
+name: Cache Demo
+
+on: [push]  # Runs on every push to any branch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Prime cache
+      id: prime-cache-285bf39
+      uses: actions/cache@v4
+      with:
+        key: cache-285bf39
+        path: ~/.cache  # Caches a dummy dir (GitHub's temp cache area)
+        
+    - name: Echo cache result
+      run: echo "Cache ${{ steps.prime-cache-285bf39.outcome }} for key cache-285bf39"
+      
+    - name: Dummy step
+      run: echo "Workflow complete!"
