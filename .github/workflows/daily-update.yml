@@ -2,7 +2,7 @@ name: Daily Update by 23f3002949@ds.study.iitm.ac.in
 
 on:
   schedule:
-    - cron: '0 22 * * *'
+    - cron: '32 17 * * *'
   workflow_dispatch:
 
 jobs:
