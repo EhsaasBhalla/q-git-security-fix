@@ -1,0 +1,27 @@
+name: Daily Update by 23f3002949@ds.study.iitm.ac.in
+
+on:
+  schedule:
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Update timestamp file by 23f3002949@ds.study.iitm.ac.in
+      run: |
+        echo "$(date -u '+%Y-%m-%d %H:%M:%S UTC') - Daily auto-update" > status.txt
+    
+    - name: Commit changes
+      run: |
+        git config user.name "Daily Bot"
+        git config user.email "23f3002949@ds.study.iitm.ac.in"
+        git add status.txt
+        git commit -m "Daily update: $(date -u '+%Y-%m-%d')" || exit 0
+        git push
